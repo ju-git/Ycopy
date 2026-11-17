@@ -1,0 +1,33 @@
+# Deutsch
+decimal_separator = ,
+unit.rate = MB/s
+
+app.title = Ycopy
+drop.enabled = Zu kopierende Dateien: hier ablegen oder klicken zum Auswählen
+dest1.label = Ziel 1
+dest2.label = Ziel 2
+browse = ...
+go = Los!
+dialog.files = Zu kopierende Dateien auswählen
+dialog.folder = Zielordner auswählen
+
+status.ready = Bereit
+status.progress = Verbleibende Zeit: {0}   |   Geschwindigkeit: {1}
+status.done = Fertig: {0} Datei(en) in {1} kopiert ({2})
+status.partial = Mit Fehlern beendet: {0} kopiert, {1} fehlgeschlagen
+status.cancelled = Abgebrochen
+
+error.title = Ycopy - Fehler
+error.io = {0}: {1}
+error.same_file = {0}: Die Quelle ist dieselbe Datei wie ein Ziel
+error.no_file_name = {0}: kein Dateiname
+error.details = {0} Datei(en) konnten nicht kopiert werden:\n\n{1}
+error.dest_folder = Der Zielordner kann nicht erstellt werden:\n{0}
+
+cli.usage = Verwendung: ycopy [OPTIONEN] [DATEI...]\n\nKopiert jede DATEI in zwei Zielordner und liest sie dabei nur einmal.\nOhne DATEI wird die grafische Oberfläche geöffnet.\n\nOptionen:\n  --dest1 ORDNER   erster Zielordner\n  --dest2 ORDNER   zweiter Zielordner\n  --lang CODE      Sprache der Oberfläche (en, fr, de, es, it, pt)\n  -h, --help       diese Hilfe anzeigen\n  -V, --version    Version anzeigen
+cli.err.unknown_option = unbekannte Option: {0}
+cli.err.missing_value = die Option {0} benötigt einen Wert
+cli.err.missing_dest = zum Kopieren von Dateien sind --dest1 und --dest2 erforderlich
+cli.err.same_dest = die beiden Ziele müssen verschieden sein
+cli.err.not_a_file = keine Datei: {0}
+cli.progress = [{0}/{1}] {2} %   {3}

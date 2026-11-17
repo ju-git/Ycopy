@@ -1,0 +1,33 @@
+# Español
+decimal_separator = ,
+unit.rate = MB/s
+
+app.title = Ycopy
+drop.enabled = Archivos que copiar: suéltelos aquí o haga clic para examinar
+dest1.label = Destino 1
+dest2.label = Destino 2
+browse = ...
+go = ¡Vamos!
+dialog.files = Seleccione los archivos que copiar
+dialog.folder = Seleccione una carpeta de destino
+
+status.ready = Listo
+status.progress = Tiempo restante: {0}   |   Velocidad: {1}
+status.done = Terminado: {0} archivo(s) copiado(s) en {1} ({2})
+status.partial = Terminado con errores: {0} copiado(s), {1} con error
+status.cancelled = Cancelado
+
+error.title = Ycopy - Error
+error.io = {0}: {1}
+error.same_file = {0}: el origen es el mismo archivo que un destino
+error.no_file_name = {0}: sin nombre de archivo
+error.details = No se pudieron copiar {0} archivo(s):\n\n{1}
+error.dest_folder = No se puede crear la carpeta de destino:\n{0}
+
+cli.usage = Uso: ycopy [OPCIONES] [ARCHIVO...]\n\nCopia cada ARCHIVO en dos carpetas de destino, leyéndolo una sola vez.\nSin ARCHIVO, se abre la interfaz gráfica.\n\nOpciones:\n  --dest1 CARPETA   primera carpeta de destino\n  --dest2 CARPETA   segunda carpeta de destino\n  --lang CÓDIGO     idioma de la interfaz (en, fr, de, es, it, pt)\n  -h, --help        muestra esta ayuda\n  -V, --version     muestra la versión
+cli.err.unknown_option = opción desconocida: {0}
+cli.err.missing_value = la opción {0} requiere un valor
+cli.err.missing_dest = para copiar archivos se requieren --dest1 y --dest2
+cli.err.same_dest = los dos destinos deben ser distintos
+cli.err.not_a_file = no es un archivo: {0}
+cli.progress = [{0}/{1}] {2} %   {3}

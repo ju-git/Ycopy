@@ -1,0 +1,33 @@
+# Português
+decimal_separator = ,
+unit.rate = MB/s
+
+app.title = Ycopy
+drop.enabled = Ficheiros a copiar: largue-os aqui ou clique para procurar
+dest1.label = Destino 1
+dest2.label = Destino 2
+browse = ...
+go = Iniciar!
+dialog.files = Selecione os ficheiros a copiar
+dialog.folder = Selecione uma pasta de destino
+
+status.ready = Pronto
+status.progress = Tempo restante: {0}   |   Velocidade: {1}
+status.done = Concluído: {0} ficheiro(s) copiado(s) em {1} ({2})
+status.partial = Concluído com erros: {0} copiado(s), {1} com falha
+status.cancelled = Cancelado
+
+error.title = Ycopy - Erro
+error.io = {0}: {1}
+error.same_file = {0}: a origem é o mesmo ficheiro que um destino
+error.no_file_name = {0}: sem nome de ficheiro
+error.details = Não foi possível copiar {0} ficheiro(s):\n\n{1}
+error.dest_folder = Não é possível criar a pasta de destino:\n{0}
+
+cli.usage = Utilização: ycopy [OPÇÕES] [FICHEIRO...]\n\nCopia cada FICHEIRO para duas pastas de destino, lendo-o apenas uma vez.\nSem FICHEIRO, abre-se a interface gráfica.\n\nOpções:\n  --dest1 PASTA   primeira pasta de destino\n  --dest2 PASTA   segunda pasta de destino\n  --lang CÓDIGO   idioma da interface (en, fr, de, es, it, pt)\n  -h, --help      mostra esta ajuda\n  -V, --version   mostra a versão
+cli.err.unknown_option = opção desconhecida: {0}
+cli.err.missing_value = a opção {0} requer um valor
+cli.err.missing_dest = para copiar ficheiros são necessários --dest1 e --dest2
+cli.err.same_dest = os dois destinos têm de ser diferentes
+cli.err.not_a_file = não é um ficheiro: {0}
+cli.progress = [{0}/{1}] {2} %   {3}

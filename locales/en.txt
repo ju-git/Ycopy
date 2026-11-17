@@ -1,0 +1,33 @@
+# English (reference language: every other file must define the same keys)
+decimal_separator = .
+unit.rate = MB/s
+
+app.title = Ycopy
+drop.enabled = Files to copy: drop them here, or click to browse
+dest1.label = Destination 1
+dest2.label = Destination 2
+browse = ...
+go = Go!
+dialog.files = Select the files to copy
+dialog.folder = Select a destination folder
+
+status.ready = Ready
+status.progress = Time remaining: {0}   |   Speed: {1}
+status.done = Done: {0} file(s) copied in {1} ({2})
+status.partial = Finished with errors: {0} copied, {1} failed
+status.cancelled = Cancelled
+
+error.title = Ycopy - Error
+error.io = {0}: {1}
+error.same_file = {0}: the source is the same file as a destination
+error.no_file_name = {0}: no file name
+error.details = {0} file(s) could not be copied:\n\n{1}
+error.dest_folder = Cannot create the destination folder:\n{0}
+
+cli.usage = Usage: ycopy [OPTIONS] [FILE...]\n\nCopies each FILE to two destination folders, reading it only once.\nWithout FILE, the graphical interface opens.\n\nOptions:\n  --dest1 DIR    first destination folder\n  --dest2 DIR    second destination folder\n  --lang CODE    interface language (en, fr, de, es, it, pt)\n  -h, --help     show this help\n  -V, --version  show the version
+cli.err.unknown_option = unknown option: {0}
+cli.err.missing_value = option {0} requires a value
+cli.err.missing_dest = both --dest1 and --dest2 are required to copy files
+cli.err.same_dest = the two destinations must be different
+cli.err.not_a_file = not a file: {0}
+cli.progress = [{0}/{1}] {2}%   {3}
