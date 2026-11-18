@@ -116,3 +116,19 @@
 > *(Interrupted and corrected:)* No, GPLv3 license.
 
 * **Result:** The first answer was interrupted before anything was written, so MIT was never applied. The official GPL v3 text was downloaded from gnu.org into `LICENSE`, the README license section was updated, and `license = "GPL-3.0-only"` was added to `Cargo.toml`.
+
+---
+
+## Prompt 11
+
+> Add Ukrainian, displayed as Українська (UKR).
+
+* **Result:** The Ukranian language file was created, with every changes needed.
+
+---
+
+## Prompt 12
+
+> In the list of files to process, add on each line an icon to delete the corresponding line.
+
+* **Result:** The file list is now a two-column list view instead of a plain list box: the path, then a "✕" mark.
