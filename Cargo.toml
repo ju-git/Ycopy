@@ -7,12 +7,13 @@ license = "GPL-3.0-only"
 
 [dependencies]
 native-windows-gui = { version = "1.0.13", default-features = false, features = [
-    "listbox", "combobox", "status-bar", "progress-bar", "file-dialog", "notice",
+    "list-view", "combobox", "status-bar", "progress-bar", "file-dialog", "notice",
     "embed-resource",
 ] }
 windows-sys = { version = "0.59", features = [
     "Win32_Foundation",
     "Win32_Globalization",
+    "Win32_Graphics_Gdi",
     "Win32_Storage_FileSystem",
     "Win32_System_Console",
     "Win32_Security",
