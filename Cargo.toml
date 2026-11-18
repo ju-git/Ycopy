@@ -1,6 +1,6 @@
 [package]
 name = "ycopy"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 description = "Copy files to two destinations with a single read of each source"
 license = "GPL-3.0-only"
