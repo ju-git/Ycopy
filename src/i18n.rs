@@ -15,10 +15,11 @@ pub enum Lang {
     Es,
     It,
     Pt,
+    Uk,
 }
 
 impl Lang {
-    pub const ALL: [Lang; 6] = [Lang::En, Lang::Fr, Lang::De, Lang::Es, Lang::It, Lang::Pt];
+    pub const ALL: [Lang; 7] = [Lang::En, Lang::Fr, Lang::De, Lang::Es, Lang::It, Lang::Pt, Lang::Uk];
 
     pub fn code(self) -> &'static str {
         match self {
@@ -28,6 +29,7 @@ impl Lang {
             Lang::Es => "es",
             Lang::It => "it",
             Lang::Pt => "pt",
+            Lang::Uk => "uk",
         }
     }
 
@@ -40,6 +42,7 @@ impl Lang {
             Lang::Es => "Español",
             Lang::It => "Italiano",
             Lang::Pt => "Português",
+            Lang::Uk => "Українська (UKR)",
         }
     }
 
@@ -57,6 +60,7 @@ impl Lang {
             Lang::Es => include_str!("../locales/es.txt"),
             Lang::It => include_str!("../locales/it.txt"),
             Lang::Pt => include_str!("../locales/pt.txt"),
+            Lang::Uk => include_str!("../locales/uk.txt"),
         }
     }
 }

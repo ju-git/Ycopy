@@ -31,6 +31,36 @@ pub fn raise_child(hwnd: *mut std::ffi::c_void) {
     }
 }
 
+/// Where the mouse cursor is over a report-style list view: `Some((row, column))`
+/// on a row, `None` on the empty area. (Hit-tests the cursor position itself,
+/// because the control's own click notification is not reliable on blank space.)
+pub fn list_view_hit_test(hwnd: *mut std::ffi::c_void) -> Option<(usize, usize)> {
+    use windows_sys::Win32::Foundation::POINT;
+    use windows_sys::Win32::Graphics::Gdi::ScreenToClient;
+    use windows_sys::Win32::UI::WindowsAndMessaging::{GetCursorPos, SendMessageW};
+
+    const LVM_SUBITEMHITTEST: u32 = 0x1000 + 57;
+    #[repr(C)]
+    struct HitTestInfo {
+        pt: POINT,
+        flags: u32,
+        item: i32,
+        sub_item: i32,
+        group: i32,
+    }
+
+    let mut pt = POINT { x: 0, y: 0 };
+    // SAFETY: `pt` and `info` are valid for the duration of the calls; an invalid HWND just makes them fail.
+    unsafe {
+        if GetCursorPos(&mut pt) == 0 || ScreenToClient(hwnd, &mut pt) == 0 {
+            return None;
+        }
+        let mut info = HitTestInfo { pt, flags: 0, item: -1, sub_item: 0, group: 0 };
+        SendMessageW(hwnd, LVM_SUBITEMHITTEST, 0, &mut info as *mut HitTestInfo as isize);
+        (info.item >= 0 && info.sub_item >= 0).then_some((info.item as usize, info.sub_item as usize))
+    }
+}
+
 /// The user's locale name, e.g. `fr-FR`.
 pub fn user_locale() -> Option<String> {
     let mut buf = [0u16; 85]; // LOCALE_NAME_MAX_LENGTH

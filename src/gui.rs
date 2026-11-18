@@ -54,8 +54,14 @@ enum StatusView {
 }
 
 /// Width/height of the language selector, and room reserved for it in the status bar.
-const LANG_COMBO_WIDTH: i32 = 120;
+const LANG_COMBO_WIDTH: i32 = 150;
 const STATUS_BAR_HEIGHT: u32 = 26;
+
+/// The file list has two columns: the path, then a clickable delete mark.
+const PATH_COLUMN_WIDTH: i32 = 480;
+const DELETE_COLUMN: usize = 1;
+const DELETE_COLUMN_WIDTH: i32 = 34;
+const DELETE_MARK: &str = "\u{2715}";
 
 #[derive(Default)]
 struct App {
@@ -65,7 +71,7 @@ struct App {
     icon_frame: nwg::ImageFrame,
     title: nwg::Label,
     drop_label: nwg::Label,
-    list: nwg::ListBox<String>,
+    list: nwg::ListView,
     dest1_label: nwg::Label,
     dest1: nwg::TextInput,
     dest1_btn: nwg::Button,
@@ -158,14 +164,28 @@ impl App {
             .size((542, 20))
             .build(&mut app.drop_label)
             .expect("drop label");
-        nwg::ListBox::<String>::builder()
+        nwg::ListView::builder()
             .parent(w)
-            .flags(nwg::ListBoxFlags::VISIBLE | nwg::ListBoxFlags::NO_SELECT)
-            .ex_flags(WS_EX_ACCEPTFILES)
+            .list_style(nwg::ListViewStyle::Detailed)
+            .flags(nwg::ListViewFlags::VISIBLE | nwg::ListViewFlags::SINGLE_SELECTION)
+            .ex_flags(nwg::ListViewExFlags::FULL_ROW_SELECT)
+            .ex_window_flags(WS_EX_ACCEPTFILES)
             .position((16, 90))
             .size((542, 150))
             .build(&mut app.list)
             .expect("drop zone");
+        app.list.insert_column(nwg::InsertListViewColumn {
+            index: Some(0),
+            fmt: Some(nwg::ListViewColumnFlags::LEFT),
+            width: Some(PATH_COLUMN_WIDTH),
+            text: None,
+        });
+        app.list.insert_column(nwg::InsertListViewColumn {
+            index: Some(1),
+            fmt: Some(nwg::ListViewColumnFlags::CENTER),
+            width: Some(DELETE_COLUMN_WIDTH),
+            text: None,
+        });
 
         let rows = [
             ("dest1.label", dest1.as_ref(), 250, 0),
@@ -225,7 +245,7 @@ impl App {
             .collection(Lang::ALL.iter().map(|l| l.native_name().to_owned()).collect())
             .selected_index(current)
             .position((client_w - LANG_COMBO_WIDTH - 4, client_h - STATUS_BAR_HEIGHT as i32 + 1))
-            .size((LANG_COMBO_WIDTH, 160))
+            .size((LANG_COMBO_WIDTH, 200))
             .build(&mut app.lang_combo)
             .expect("language selector");
         if let Some(h) = app.lang_combo.handle.hwnd() {
@@ -306,8 +326,15 @@ impl App {
             Event::OnTextInput => self.refresh_controls(),
             Event::OnComboxBoxSelection if handle == self.lang_combo.handle => self.on_language_selected(),
             Event::OnNotice => self.on_notice(),
+            // A click on a row is reported by the control itself (it swallows the
+            // mouse-up); a click on the empty area only shows up as a mouse-up.
+            Event::OnListViewClick if handle == self.list.handle => {
+                let (row, column) = data.on_list_view_item_index();
+                self.on_row_click(row, column);
+            }
             Event::OnMousePress(MousePressEvent::MousePressLeftUp) if handle == self.list.handle => {
-                if self.list.enabled() {
+                let on_row = self.list.handle.hwnd().and_then(|h| crate::platform::list_view_hit_test(h.cast()));
+                if on_row.is_none() && self.list.enabled() {
                     self.browse_files();
                 }
             }
@@ -351,12 +378,38 @@ impl App {
             let mut pending = self.pending.borrow_mut();
             for path in paths {
                 if path.is_file() && !pending.contains(&path) {
-                    self.list.push(path.display().to_string());
+                    self.push_row(pending.len(), &path);
                     pending.push(path);
                 }
             }
         }
         self.refresh_controls();
+    }
+
+    /// Appends a row (path + delete mark) at index `row` of the list view.
+    fn push_row(&self, row: usize, path: &std::path::Path) {
+        for (column, text) in [(0, path.display().to_string()), (DELETE_COLUMN, DELETE_MARK.to_owned())] {
+            self.list.insert_item(nwg::InsertListViewItem {
+                index: Some(row as i32),
+                column_index: column as i32,
+                text: Some(text),
+            });
+        }
+    }
+
+    /// Click on a row of the file list: the delete mark removes it, the path
+    /// opens the file picker (like the empty area does).
+    fn on_row_click(&self, row: usize, column: usize) {
+        if !self.list.enabled() || row >= self.pending.borrow().len() {
+            return;
+        }
+        if column == DELETE_COLUMN {
+            self.pending.borrow_mut().remove(row);
+            self.list.remove_item(row);
+            self.refresh_controls();
+        } else {
+            self.browse_files();
+        }
     }
 
     fn browse_files(&self) {
@@ -453,7 +506,7 @@ impl App {
         let mut pending = self.pending.borrow_mut();
         if let Some(pos) = pending.iter().position(|p| p == path) {
             pending.remove(pos);
-            self.list.remove(pos);
+            self.list.remove_item(pos);
         }
     }
 
