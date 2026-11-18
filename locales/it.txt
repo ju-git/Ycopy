@@ -24,7 +24,7 @@ error.no_file_name = {0}: nessun nome di file
 error.details = Impossibile copiare {0} file:\n\n{1}
 error.dest_folder = Impossibile creare la cartella di destinazione:\n{0}
 
-cli.usage = Uso: ycopy [OPZIONI] [FILE...]\n\nCopia ogni FILE in due cartelle di destinazione, leggendolo una sola volta.\nSenza FILE, si apre l'interfaccia grafica.\n\nOpzioni:\n  --dest1 CARTELLA   prima cartella di destinazione\n  --dest2 CARTELLA   seconda cartella di destinazione\n  --lang CODICE      lingua dell'interfaccia (en, fr, de, es, it, pt)\n  -h, --help         mostra questo aiuto\n  -V, --version      mostra la versione
+cli.usage = Uso: ycopy [OPZIONI] [FILE...]\n\nCopia ogni FILE in due cartelle di destinazione, leggendolo una sola volta.\nSenza FILE, si apre l'interfaccia grafica.\n\nOpzioni:\n  --dest1 CARTELLA   prima cartella di destinazione\n  --dest2 CARTELLA   seconda cartella di destinazione\n  --lang CODICE      lingua dell'interfaccia (en, fr, de, es, it, pt, uk)\n  -h, --help         mostra questo aiuto\n  -V, --version      mostra la versione
 cli.err.unknown_option = opzione sconosciuta: {0}
 cli.err.missing_value = l'opzione {0} richiede un valore
 cli.err.missing_dest = per copiare i file sono necessari sia --dest1 sia --dest2

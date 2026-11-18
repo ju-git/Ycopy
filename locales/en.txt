@@ -24,7 +24,7 @@ error.no_file_name = {0}: no file name
 error.details = {0} file(s) could not be copied:\n\n{1}
 error.dest_folder = Cannot create the destination folder:\n{0}
 
-cli.usage = Usage: ycopy [OPTIONS] [FILE...]\n\nCopies each FILE to two destination folders, reading it only once.\nWithout FILE, the graphical interface opens.\n\nOptions:\n  --dest1 DIR    first destination folder\n  --dest2 DIR    second destination folder\n  --lang CODE    interface language (en, fr, de, es, it, pt)\n  -h, --help     show this help\n  -V, --version  show the version
+cli.usage = Usage: ycopy [OPTIONS] [FILE...]\n\nCopies each FILE to two destination folders, reading it only once.\nWithout FILE, the graphical interface opens.\n\nOptions:\n  --dest1 DIR    first destination folder\n  --dest2 DIR    second destination folder\n  --lang CODE    interface language (en, fr, de, es, it, pt, uk)\n  -h, --help     show this help\n  -V, --version  show the version
 cli.err.unknown_option = unknown option: {0}
 cli.err.missing_value = option {0} requires a value
 cli.err.missing_dest = both --dest1 and --dest2 are required to copy files

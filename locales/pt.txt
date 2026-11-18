@@ -24,7 +24,7 @@ error.no_file_name = {0}: sem nome de ficheiro
 error.details = Não foi possível copiar {0} ficheiro(s):\n\n{1}
 error.dest_folder = Não é possível criar a pasta de destino:\n{0}
 
-cli.usage = Utilização: ycopy [OPÇÕES] [FICHEIRO...]\n\nCopia cada FICHEIRO para duas pastas de destino, lendo-o apenas uma vez.\nSem FICHEIRO, abre-se a interface gráfica.\n\nOpções:\n  --dest1 PASTA   primeira pasta de destino\n  --dest2 PASTA   segunda pasta de destino\n  --lang CÓDIGO   idioma da interface (en, fr, de, es, it, pt)\n  -h, --help      mostra esta ajuda\n  -V, --version   mostra a versão
+cli.usage = Utilização: ycopy [OPÇÕES] [FICHEIRO...]\n\nCopia cada FICHEIRO para duas pastas de destino, lendo-o apenas uma vez.\nSem FICHEIRO, abre-se a interface gráfica.\n\nOpções:\n  --dest1 PASTA   primeira pasta de destino\n  --dest2 PASTA   segunda pasta de destino\n  --lang CÓDIGO   idioma da interface (en, fr, de, es, it, pt, uk)\n  -h, --help      mostra esta ajuda\n  -V, --version   mostra a versão
 cli.err.unknown_option = opção desconhecida: {0}
 cli.err.missing_value = a opção {0} requer um valor
 cli.err.missing_dest = para copiar ficheiros são necessários --dest1 e --dest2
